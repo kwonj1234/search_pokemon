@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<head>
+    <link rel="stylesheet" type="text/css" href="index.css">
+    <title>Pokemon API</title>
+</head>
+<body>
+    <header class="header">
+        <h1>Search Pokemon</h1>
+    </header>
+<main>
+    <div class="card">
+        <div class="searchPoke">
+            <h3>Search Pokemon</h3>
+            <label for="pokeInput">Input Pokemon: </label>
+            <input id="poke" type="text" placeholder="Pokemon Name" onchange="getPoke()"/>
+            <br><br>
+            <img id="pokeImage" scr=""/>
+        </div>
+    </div>
+</main>
+</body>
+<script>
+    let pokeImage = document.getElementById("pokeImage")
+
+    async function getPoke() {
+        let poke = document.getElementById("poke").value
+
+        response = await fetch(`https://pokeapi.co/api/v2/pokemon/${poke}/`)
+        data = await response.json()
+        console.log(data)
+        pokeImage.src = data.sprites.front_default;
+    }
+</script>
